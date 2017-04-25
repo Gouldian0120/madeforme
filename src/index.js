@@ -8,7 +8,6 @@ import store from './store';
 import Home from './Home';
 import LoginPage from './containers/LoginPage';
 import CartPage from './containers/CartPage';
-import AddProduct from './containers/AddProduct';
 
 
 const root = document.getElementById('root');
@@ -21,7 +20,6 @@ const routes = (
         <Route path='products' component={ProductsPage} />
         <Route path='login' component={LoginPage} />
         <Route path='cart' component={CartPage} />
-        <Route path='product' component={AddProduct} />
       </Route>
     </Router>
   </Provider>

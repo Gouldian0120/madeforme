@@ -5,46 +5,38 @@ import { loadCartSuccess, removeFromCartSuccess } from '../actions/';
 import { LOAD_CART, REMOVE_FROM_CART } from '../constants/';
 
 
+
+
+
 // Initial State
 const initialState = {
-    order: 0,
     cartItems: []
 };
 
 // Methods
 const loadCart = (orderId) => {
+    console.log('orderId', orderId)
     return (dispatcher) => {
         axios.get(`/api/order/${orderId}`)
             .then(response => response.data)
             .then(order => {
                 dispatcher(loadCartSuccess(order));
             })
-            .catch(err => console.log('Error loadCart:', err));
+            .catch(err => console.log('loadCart err:', err));
     };
 };
 
 const removeFromCart = (orderId, productId) => {
-    console.log('remove', orderId, productId)
+    console.log('productId', productId);
     return (dispatch) => {
-        axios.delete(`/api/order/${orderId}/${productId}`)
-            .then(() => {
-                dispatch(removeFromCartSuccess(productId));
-            })
-            .catch(err => console.log('Error: removeFromCart', err));
-    };
-};
-
-
-const addToCart = (orderId, productId, qty = 1) => {
-    console.log('addToCart', orderId);
-    return (dispatch) => {
-        console.log(`POST to /api/order/${orderId}/`);
-        axios.post(`/api/order/${orderId}/`, { qty: qty, productId: productId })
+        axios.delete(`/api/order/${orderId}/${productId}`, { productId: productId })
             .then(response => response.data)
             .then(order => {
+                console.log(order)
+                // dispatch(removeFromCartSuccess(order));
                 dispatch(loadCartSuccess(order));
             })
-            .catch(err => console.log('Error: addToCart', err));
+            .catch(err => console.log('removeFromCart err:', err));
     };
 };
 
@@ -55,16 +47,11 @@ const addToCart = (orderId, productId, qty = 1) => {
 const cartReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_CART:
-            return Object.assign({}, state, { order: action.cart[0].id, cartItems: action.cart[0].orderlines });
-        case REMOVE_FROM_CART:
-            return Object.assign({}, state,
-                {
-                    cartItems: state.cartItems.filter(item => item.productId !== action.productId)
-                });
+            return Object.assign({}, state, { cartItems: action.cart[0].orderlines });
         default:
             return state;
     }
 };
 
-export { loadCart, removeFromCart, addToCart };
+export { loadCart, removeFromCart };
 export default cartReducer;
