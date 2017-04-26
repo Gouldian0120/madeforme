@@ -25,12 +25,21 @@ const destroyProduct = (product)=> {
       .then(response => dispatch(destroyProductSuccess(product)));
   };
 };
+const addtoCart = ()=>{
+
+};
+
+const filterProducts =()=>{
+
+};
 
 
 
 export {
   destroyProduct,
-  loadProducts
+  loadProducts,
+  addtoCart,
+  filterProducts
 };
 
 
