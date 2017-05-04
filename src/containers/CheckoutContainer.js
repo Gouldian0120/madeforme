@@ -5,12 +5,12 @@ import { connect } from 'react-redux'
 import CheckoutStep1 from '../CheckoutStep1';
 import CheckoutStep2 from '../CheckoutStep2';
 import { completeCheckout } from '../reducers/orderReducer';
-import { clearCart } from '../reducers/cartReducer';
+
 
 
 const CheckoutContainer = (props) =>  {
 
-    const { activeUser, router, children, orderId, order, errMessage } = props;
+    const { activeUser, router, children, orderId } = props;
 
     return (
 
@@ -35,8 +35,7 @@ const mapStateToProps = (state) => (
     {
         activeUser: state.auth.user,
         orderId: state.order.order && state.order.order[0] && state.order.order[0].id,
-        order: state.order.order && state.order.order[0],
-        errMessage: state.order.message
+        order: state.order.order && state.order.order[0]
     }
 )
 
@@ -50,17 +49,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             },
 
             completeCheckout: (order, payment)=>{
-                dispatch(completeCheckout(order, payment)) // we need to return a promise
-                .then( response => {
-                    console.log('response', response)
-                    console.log('response.order', response.order)
-                    console.log('resonse.newOrder', response.newOrder)
-                    return dispatch(clearCart())
-                })
-                // we have to reset the order in redux and local store
-                // reroute to complete/orderId
-                .then( () => ownProps.router.push(`/checkout/complete`))
-                .catch( err => console.log('error', err))
+                dispatch(completeCheckout(order, payment))
             }
         }
     )
