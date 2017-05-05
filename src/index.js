@@ -7,7 +7,6 @@ import store from './store';
 import Home from './Home';
 import LoginContainer from './containers/LoginContainer';
 import ProductListContainer from './containers/productListContainer';
-import ProductDetailsContainer from './containers/productDetailsContainer';
 import CartContainer from './containers/CartContainer';
 import CheckoutContainer from './containers/CheckoutContainer';
 import CheckoutStep1 from './CheckoutStep1';
@@ -29,9 +28,8 @@ const routes = (
           <Route path='/checkout/shipping' component={ CheckoutStep1 } />
           <Route path='/checkout/billing' component={ CheckoutStep2 } />
           <Route path='/checkout/payment' component={ CheckoutStep3 } />
-          <Route path='/checkout/confirm' component={ CheckoutStep4 } />
+          <Route path='/checkout/complete' component={ CheckoutStep4 } />
         </Route>
-        <Route path='productDetails' component={ ProductDetailsContainer } />
       </Route>
     </Router>
   </Provider>

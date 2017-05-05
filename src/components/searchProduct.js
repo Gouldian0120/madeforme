@@ -10,7 +10,7 @@ export default class SearchProduct extends React.Component{
 		filterProducts(event.target.value);
 	}
 	render(){
-		return(<div className="productSearch">
+		return(<div>
 				<input type="text" onChange={this.handleSearch}/>
    			</div>
    			);

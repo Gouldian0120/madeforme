@@ -71,6 +71,19 @@ a.glyphicon.glyphicon-remove {
     margin-top: 10px;
 }
 
+/* MY PROFILE PAGE */
+ul.list-group {
+    list-style: none;
+}
+
+.order-item {
+    text-decoration: underline;
+}
+
+.order-list  {
+    margin: 0;
+}
+
 /* CUSTOM BUTTONS */
 .custom-button-1 {
     background-color: #ebe9eb;
@@ -83,19 +96,6 @@ a.glyphicon.glyphicon-remove {
     border: none;
 }
 
-.productSearch{
-    text-align: center;
-    margin-bottom: 20px;
-}
-.productSearch input{
-    width:85%;
-}
 
-.productItem img{
-    height:100%;
-    width:100%;
-}
 
-.productsList{
-    margin:5%;
-}
+
