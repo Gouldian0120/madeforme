@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { login, logout } from '../reducers/authReducer';
 import { connect } from 'react-redux';
-import UserAccount from '../UserAccount';
+import UserInfo from '../UserInfo';
 
 class LoginContainer extends Component {
     constructor({ login, logout, activeUser, router, order, completedOrders }) {
@@ -35,7 +35,7 @@ class LoginContainer extends Component {
         return (
             <div className='container'>
                 { this.props.activeUser && this.props.order ?
-                    <UserAccount
+                    <UserInfo
                         activeUser={ this.props.activeUser }
                         onLogoutSubmit={ this.onLogoutSubmit }
                         order= { this.props.order }

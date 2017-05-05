@@ -2,7 +2,7 @@ import React from 'react';
 import UserOrderHistory from './UserOrderHistory';
 import Address from './Address';
 
-const UserAccount = (props) => {
+const UserInfo = (props) => {
     const { activeUser, onLogoutSubmit, order, completedOrders } = props;
     const lastOrder = completedOrders ? completedOrders.slice(-1)[0] : null;
 
@@ -44,4 +44,4 @@ const UserAccount = (props) => {
     )
 }
 
-export default UserAccount;
+export default UserInfo;
