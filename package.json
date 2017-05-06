@@ -1,7 +1,7 @@
 {
-  "name": "made-by-don",
+  "name": "react-template",
   "version": "1.0.0",
-  "description": "Mini E-commercer Store",
+  "description": "",
   "main": "index.js",
   "dependencies": {
     "axios": "^0.15.3",
@@ -21,7 +21,6 @@
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
     "scriptly": "0.0.7",
-    "sendgrid": "^5.1.0",
     "sequelize": "^3.30.2",
     "stripe": "^4.18.0",
     "webpack": "^2.3.0"
@@ -32,9 +31,9 @@
   "scripts": {
     "db-init": "pg-init grace_shopper",
     "postinstall": "npm run webpack",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "./node_modules/webpack/bin/webpack.js",
-    "start:dev": "npm run webpack -- -w & DATABASE_URL=postgres://localhost/grace_shopper nodemon --ignore dist/ --ignore src/ server.js",
-    "start": "node server.js"
+    "start:dev": "npm run webpack -- -w & DATABASE_URL=postgres://localhost/grace_shopper nodemon --ignore dist/ --ignore src/ server.js"
   },
   "keywords": [],
   "author": "",
