@@ -1,16 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 // import { loadCart, removeFromCart } from '../reducers/cartReducer';
-import CartItem from './cartItem';
+import CartItem from './CartItem';
 
 
-  const CartProducts = ({ cart, removeFromCart, isFinalStep }) => {
-  let giftClass = isFinalStep ? 'gift-message hide' : 'gift-message';
+const CartProducts = ({ cart, removeFromCart }) => {
   return (
     <div className='container'>
-      <span className={giftClass}>
-        <b>Gift?</b> If you wish to gift this item, check the gift wrap option on the product page or let us know in the notes section on the checkout page. Add the personal message you want to include on a card in the notes as well.
-      </span>
+      <b>Gift?</b> If you wish to gift this item, check the gift wrap option on the product page or let us know in the notes section on the checkout page. Add the personal message you want to include on a card in the notes as well.
+
       {
         (cart.cartItems.length > 0) ?
         <div className='container'>
