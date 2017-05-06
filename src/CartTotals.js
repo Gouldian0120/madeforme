@@ -50,13 +50,7 @@ class CartTotals extends Component  {
                     <b>$ { this.props.cartTotal }</b>
                 </div>
             </div>
-            { this.props.isFinalStep ?
-                null
-                :
-                <button onClick={ this.onCheckoutClick.bind(this) } className='custom-button-1'>Proceed to checkout</button>
-
-            }
-
+            <button onClick={ this.onCheckoutClick.bind(this) } className='custom-button-1'>Proceed to checkout</button>
           </div>
         )
 
