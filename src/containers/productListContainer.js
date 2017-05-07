@@ -1,34 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { selectProduct, deSelectProduct } from '../reducers/productsReducer';
-import { addToCart  } from '../reducers/cartReducer';
+import { filterProduct, selectProduct } from '../reducers/productsReducer';
+import { addToCart } from '../reducers/cartReducer';
 
 
 import { ProductContainer, ProductRow, Product } from '../components/products/productsList';
-import ProductDetails from '../components/products/productdetails';
+import { SearchProduct } from '../components/products/searchProduct';
+
 
 class ProductListContainer extends React.Component {
-	constructor({ products, activeUser, addtoCart, selectProduct, deselectProduct }) {
+	constructor({ products, addtoCart, filterProducts, activeUser }) {
 		super();
 	}
 
 	render() {
 		if (!this.props.products) return null;
 		return (
-			(!this.props.selectedProduct) ?
-				<div className="container">
-					<ProductContainer
-						products={this.props.products}
-						activeUser={this.props.activeUser}
-						addtoCart={this.props.addtoCart}
-						selectProduct={this.props.selectProduct} />
-				</div>
-				: <div className="container">
-					<ProductDetails
-						selectedProduct={this.props.selectedProduct}
-						activeUser={this.props.activeUser}
-						addtoCart={this.props.addtoCart} />
-				</div>
+			<div className="container">
+				<ProductContainer products={this.props.products} addtoCart={this.props.addtoCart} activeUser={this.props.activeUser} />
+			</div>
 		);
 	}
 }
@@ -37,8 +27,8 @@ class ProductListContainer extends React.Component {
 const mapDispatchToProps = (dispatch) => (
 	{
 		addtoCart: (orderId, product, qty) => dispatch(addToCart(orderId, product, qty)),
-		selectProduct: (product) => dispatch(selectProduct(product)),
-		deSelectProduct: () => dispatch(deSelectProduct())
+		filterProduct: (productVal) => dispatch(filterProduct(productVal)),
+		selectProduct: () => dispatch(selectProduct(productId))
 	}
 );
 
@@ -46,8 +36,7 @@ const mapStateToProps = (state) => {
 	return (
 		{
 			activeUser: state.auth.user, //changed to activeUser
-			products: state.products.list,
-			selectedProduct: state.products.selectedProduct
+			products: state.products
 		}
 	);
 };
