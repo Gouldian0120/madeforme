@@ -140,31 +140,29 @@ app.post('/:orderId/payment', (req, res, next) => {
     })
         .then(_order => {
             order = _order;
+
             let amount = order[0].orderlines.reduce( (total, line) => {
                 return total+= (line.product.price * line.qty)
-            },0)*1;
-            const tax = amount * 0.08875;
-            const stripeAmount = (amount*1 + tax*1 + order[0].shippingCost*1).toFixed(2)
+            },0)
 
             //sk = secret key
             const stripe = require('stripe')('sk_test_R10qlCsOK5ECIlbM6geYGHIR')
 
             // returns a promise
             return stripe.charges.create({
-                amount: stripeAmount.split('.').join(''),
+                amount: amount,
                 currency: 'usd',
                 description: 'we be shoppin',
                 source: req.body.token
             })
         })
         .then(charge => {
-            console.log('order[0]', order[0])
             // Update the order status and the order
             order[0].status = 'complete';
             order[0].confirmationId = charge.id
-            // order[0].amount = charge.amount / 100
-            order[0].tax = (charge.amount / 100) * 0.08875
-            order[0].total = charge.amount / 100
+            order[0].amount = charge.amount
+            order[0].tax = charge.amount * 0.08875
+            order[0].total = charge.amount + order[0].tax + order[0].shippingCost
 
             return order[0].save()
         })
