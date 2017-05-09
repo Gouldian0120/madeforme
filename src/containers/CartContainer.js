@@ -41,14 +41,13 @@ const mapStateToProps = (state) => {
                 cart: state.cart,
                 cartTotal: cartTotal,
                 shipping: state.order.order && state.order.order[0] ? state.order.order[0].shippingCost : 12.99,
-                tax: cartTotal * 0.0875
+                tax: cartTotal * 0.08875
         }
     )
 };
 
 const mapDispatchToProps = (dispatch) => (
     {
-        // loadCart: (orderId) => dispatch(loadCart(orderId)),
         removeFromCart: (orderId, product) => dispatch(removeFromCart(orderId, product))
     }
 );
